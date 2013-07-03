@@ -63,7 +63,7 @@ send_notice(_From, To, Packet) ->
     Token = gen_mod:get_module_opt(To#jid.lserver, ?MODULE, auth_token, [] ),
     PostUrl = gen_mod:get_module_opt(To#jid.lserver, ?MODULE, post_url, [] ),
     if
-	(Type == "chat") and (Body /= "") ->
+	((Type == "transfer") or (Type == "chat")) and (Body /= "") ->
 	  Sep = "&",
 	  Post = [
 	    "to=", To#jid.luser, Sep,
